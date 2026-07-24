@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= resultado.nome %> — Resultado PSC | DelCap Itajaí</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/navio-resultado.css">
+</head>
+<body>
+
+<div class="side-line"></div>
+<div class="page-wrapper">
+
+    <a href="/navios/identificar" class="back-link">
+        <span class="arrow">←</span> Nova identificação
+    </a>
+
+    <div class="page-header">
+        <p class="eyebrow">Resultado da Análise de Risco</p>
+        <h1><%= resultado.nome %></h1>
+        <div class="gold-rule"></div>
+        <p class="navio-tipo"><%= resultado.tipoLabel %></p>
+    </div>
+
+    <div class="resultado-painel">
+
+        <div class="resultado-card <%= resultado.grauRisco.classeCss %>">
+            <div class="resultado-card-label">Grau de Risco</div>
+            <div class="resultado-card-valor"><%= resultado.grauRisco.label %></div>
+            <div class="resultado-card-desc"><%= resultado.grauRisco.descricao %></div>
+            <div class="resultado-card-badge">
+                <%= resultado.idadeAnos %> anos de operação
+            </div>
+        </div>
+
+        <div class="resultado-card <%= resultado.prioridade.classeCss %>">
+            <div class="resultado-card-label">Prioridade de Inspeção</div>
+            <div class="resultado-card-valor"><%= resultado.prioridade.label %></div>
+            <div class="resultado-card-desc"><%= resultado.prioridade.descricao %></div>
+            <div class="resultado-card-badge">
+                <%= resultado.mesesDesdeInspecao === 1
+                    ? '1 mês desde a última inspeção'
+                    : `${resultado.mesesDesdeInspecao} meses desde a última inspeção` %>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="dados-tecnicos">
+        <p class="section-label">Dados Registrados</p>
+        <div class="dados-grid">
+            <div class="dado-item">
+                <span class="dado-label">Nome</span>
+                <span class="dado-valor"><%= resultado.nome %></span>
+            </div>
+            <div class="dado-item">
+                <span class="dado-label">Tipo</span>
+                <span class="dado-valor"><%= resultado.tipoLabel %></span>
+            </div>
+            <div class="dado-item">
+                <span class="dado-label">Ano de Construção</span>
+                <span class="dado-valor"><%= resultado.anoConstrucao %></span>
+            </div>
+            <div class="dado-item">
+                <span class="dado-label">Idade do Navio</span>
+                <span class="dado-valor"><%= resultado.idadeAnos %> anos</span>
+            </div>
+            <div class="dado-item">
+                <span class="dado-label">Última Inspeção CIALA</span>
+                <span class="dado-valor"><%= resultado.ultimaInspecao %></span>
+            </div>
+            <div class="dado-item">
+                <span class="dado-label">Meses desde Inspeção</span>
+                <span class="dado-valor"><%= resultado.mesesDesdeInspecao %></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="acoes">
+        <a href="/navios/identificar" class="btn-primary">Nova Identificação →</a>
+    </div>
+
+    <footer>
+        <span class="footer-brand">DelCap Itajaí / PSC</span>
+        <span id="clock"></span>
+        <span>Sistema Interno — Uso Restrito</span>
+    </footer>
+
+</div>
+
+<script src="/js/global.js"></script>
+<script src="/js/navio-resultado.js"></script>
+</body>
+</html>

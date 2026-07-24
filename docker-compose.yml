@@ -1,0 +1,23 @@
+services:
+
+  app:
+
+    build:
+
+      context: .
+
+      dockerfile: .devcontainer/Dockerfile
+
+    container_name: port-inspection-node
+
+    volumes:
+
+      - .:/workspace:cached
+
+    working_dir: /workspace
+
+    command: sleep infinity
+
+    ports:
+
+      - "3000:3000"   # porta padrão do Node/Express (era 8080 no Java)

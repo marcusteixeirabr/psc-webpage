@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificação de Navio | DelCap Itajaí</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/navio-form.css">
+</head>
+<body>
+
+<div class="side-line"></div>
+<div class="page-wrapper">
+
+    <a href="/" class="back-link"><span class="arrow">←</span> Página inicial</a>
+
+    <div class="page-header">
+        <p class="eyebrow">PSC — DelCap Itajaí / CIALA</p>
+        <h1>Identificação<br>de <em>Navio</em></h1>
+        <div class="gold-rule"></div>
+        <p class="lead">Preencha os dados do navio para calcular o grau de risco e a prioridade de inspeção.</p>
+    </div>
+
+    <form action="/navios/identificar" method="post" class="navio-form" novalidate>
+
+        <!-- NOME -->
+        <div class="form-group <%= erros.nome ? 'has-error' : '' %>">
+            <label class="form-label">
+                <span class="label-number">01</span> Nome do Navio
+            </label>
+            <input type="text"
+                   name="nome"
+                   value="<%= form.nome || '' %>"
+                   class="form-input"
+                   placeholder="Ex: MV Atlantic Pioneer"
+                   autocomplete="off">
+            <% if (erros.nome) { %>
+                <span class="form-error"><%= erros.nome %></span>
+            <% } %>
+        </div>
+
+        <!-- TIPO -->
+        <div class="form-group <%= erros.tipo ? 'has-error' : '' %>">
+            <label class="form-label">
+                <span class="label-number">02</span> Tipo do Navio
+            </label>
+            <select name="tipo" class="form-input form-select">
+                <option value="" disabled <%= !form.tipo ? 'selected' : '' %>>
+                    Selecione o tipo...
+                </option>
+                <% for (const [chave, label] of Object.entries(tiposNavio)) { %>
+                    <option value="<%= chave %>" <%= form.tipo === chave ? 'selected' : '' %>>
+                        <%= label %>
+                    </option>
+                <% } %>
+            </select>
+            <% if (erros.tipo) { %>
+                <span class="form-error"><%= erros.tipo %></span>
+            <% } %>
+        </div>
+
+        <!-- ANO DE CONSTRUÇÃO -->
+        <div class="form-group <%= erros.anoConstrucao ? 'has-error' : '' %>">
+            <label class="form-label">
+                <span class="label-number">03</span> Ano de Construção
+            </label>
+            <input type="number"
+                   name="anoConstrucao"
+                   value="<%= form.anoConstrucao || '' %>"
+                   class="form-input"
+                   placeholder="Ex: 1998"
+                   min="1900" max="2100">
+            <% if (erros.anoConstrucao) { %>
+                <span class="form-error"><%= erros.anoConstrucao %></span>
+            <% } %>
+        </div>
+
+        <!-- ÚLTIMA INSPEÇÃO -->
+        <div class="form-group <%= erros.ultimaInspecao ? 'has-error' : '' %>">
+            <label class="form-label">
+                <span class="label-number">04</span> Data da Última Inspeção CIALA
+            </label>
+            <input type="date"
+                   name="ultimaInspecao"
+                   value="<%= form.ultimaInspecao || '' %>"
+                   class="form-input">
+            <% if (erros.ultimaInspecao) { %>
+                <span class="form-error"><%= erros.ultimaInspecao %></span>
+            <% } %>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">
+                Calcular Risco e Prioridade →
+            </button>
+        </div>
+
+    </form>
+
+    <footer>
+        <span class="footer-brand">DelCap Itajaí / PSC</span>
+        <span id="clock"></span>
+        <span>Sistema Interno — Uso Restrito</span>
+    </footer>
+
+</div>
+
+<script src="/js/global.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "name": "Port Inspection Node",
+
+  "containerEnv": {
+    "TZ": "America/Sao_Paulo"
+  },
+
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Suporte JavaScript/TypeScript
+        "dbaeumer.vscode-eslint", // linter JS/TS
+        "esbenp.prettier-vscode", // formatador de código
+        "christian-kohler.npm-intellisense", // autocomplete de imports npm
+
+        // Node.js e Express
+        "ms-vscode.js-debug-nightly", // debugger Node.js
+        "formulahendry.auto-rename-tag", // renomeia tags HTML em par
+
+        // EJS (nosso template engine)
+        "digitalbrainstem.javascript-ejs-support",
+
+        // Utilidades gerais
+        "pkief.material-icon-theme", // ícones bonitos no explorer
+        "usernamehw.errorlens" // erros inline no código
+      ],
+
+      "settings": {
+        // formatar ao salvar — boa prática desde o início
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+        // mostra o caminho completo na aba — útil para não confundir arquivos
+        "workbench.editor.labelFormat": "short"
+      }
+    }
+  },
+
+  // porta do Express (equivalente ao 8080 do Spring Boot)
+  "forwardPorts": [3000],
+
+  "remoteUser": "node"
+}
