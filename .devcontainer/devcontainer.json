@@ -40,10 +40,18 @@
     }
   },
 
-  "postCreateCommand": "sudo chown -R node:node /workspace",
+  "mounts": [
+    "source=/home/marcus/.ssh/agent.sock,target=/ssh-agent,type=bind"
+  ],
+
+  "containerEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  },
 
   // porta do Express (equivalente ao 8080 do Spring Boot)
   "forwardPorts": [3000],
+  
+  "remoteUser": "node",
 
-  "remoteUser": "node"
+  "postCreateCommand": "sudo chown -R node:node /workspace"
 }
