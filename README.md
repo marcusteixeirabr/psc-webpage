@@ -71,15 +71,6 @@ Se você possui o Docker instalado, não precisa configurar o Node.js na sua má
 
 ---
 
-## 🧪 Testes Rápidos
-
-O projeto inclui um arquivo utilitário para testes de scripts rápidos de rotina:
-```bash
-node teste-seu-script-aqui.js
-```
-
----
-
 ## 👤 Autor
 
 * **Marcus Teixeira** - [GitHub](https://github.com/marcusteixeirabr)
